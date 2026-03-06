@@ -14,8 +14,11 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "AI Notebook LLM", // Change this from "Create Next App"
-  description: "Advanced PDF Chat Intelligence",
+  title: "AI Notebook LLM",
+  description: "Chat with your PDFs",
+  icons: {
+    icon: "/icon.png", // This points to your new image
+  },
 };
 
 export default function RootLayout({
