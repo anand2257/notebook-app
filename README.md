@@ -1,36 +1,55 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+📘 AI Notebook LLM
+A full-stack RAG (Retrieval-Augmented Generation) application that allows users to upload PDFs and have natural language conversations with their documents.
 
-## Getting Started
+🚀 Tech Stack
+Frontend: Next.js 14, Tailwind CSS, Lucide Icons
 
-First, run the development server:
+Backend: FastAPI (Python 3.11), LangChain
 
-```bash
+Database: Pinecone (Vector Store)
+
+AI Model: Google Gemini (Embeddings & LLM)
+
+Hosting: Vercel (Frontend) & Hugging Face Spaces (Backend)
+
+🛠️ System Architecture
+PDF Ingestion: Documents are uploaded via the Next.js frontend to the FastAPI backend.
+
+Processing: Text is extracted using PyPDF and split into chunks using LangChain.
+
+Vectorization: Chunks are converted into high-dimensional vectors via Google Gemini Embeddings.
+
+Storage: Vectors are stored in a Pinecone cloud index for persistent retrieval.
+
+RAG Query: When a user asks a question, the system retrieves relevant context from Pinecone and generates an answer using Gemini.
+
+⚙️ Environment Variables
+To run this project locally, you will need to create a .env file in the backend/ folder and a .env.local in the src/ folder.
+
+Backend (/backend/.env)
+Plaintext
+GOOGLE_API_KEY=your_gemini_api_key
+PINECONE_API_KEY=your_pinecone_api_key
+PINECONE_INDEX_NAME=notebook-index
+Frontend (/.env.local)
+Plaintext
+NEXT_PUBLIC_API_URL=http://localhost:7860  # Or your Hugging Face URL
+📦 Installation & Setup
+1. Backend Setup
+Bash
+cd backend
+python -m venv .venv
+source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+pip install -r requirements.txt
+uvicorn main:app --reload --port 7860
+2. Frontend Setup
+Bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+🚢 Deployment
+Backend: Deployed as a Docker container on Hugging Face Spaces.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Frontend: Deployed on Vercel with the NEXT_PUBLIC_API_URL pointing to the Hugging Face Direct URL.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+🤝 Contributing
+Contributions, issues, and feature requests are welcome! Feel free to check the issues page.
